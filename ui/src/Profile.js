@@ -7,7 +7,7 @@ function Profile() {
 
 
     useEffect(() => {
-        fetch('http://localhost:8088/api/profiles/65d1441a75fd19adefcf8783')
+        fetch('http://localhost:8088/api/profiles/6652a3aef8e0f9652be33012')
             .then(response => response.json())
             .then(data => {
                 setProfile(data);
@@ -32,7 +32,7 @@ function Profile() {
 
             <div className="post-section">
                 {
-                    posts.map(p => <div className="post-image" key={uuidv4()}> {p.text} </div>)
+                    posts?.map(p => <div className="post-image" key={uuidv4()}> {p.text} </div>)
                 }
                 <p>Here is a sample post text. This could be an interesting update, question, or insight shared by the user.</p>
                 <div className="interaction-buttons">
