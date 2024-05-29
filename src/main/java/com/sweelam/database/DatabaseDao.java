@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -16,13 +15,15 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 
+import lombok.RequiredArgsConstructor;
+
 @Repository
+@RequiredArgsConstructor
 public class DatabaseDao {
-    @Value("${mongodb.database}")
+    @Value("${spring.data.mongodb.database}")
     private String DB;
 
-    @Autowired
-    private MongoClient mongozClient;
+    private final MongoClient mongozClient;
 
     private MongoCollection<Document> getCollection(String collectionName) {
         MongoDatabase db = mongozClient.getDatabase(DB);

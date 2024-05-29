@@ -7,10 +7,10 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 
 @SpringBootApplication
 @EnableReactiveMongoRepositories
-public class Main {
+public class XMockApplication {
     public static void main(String[] args) {
 
-       SpringApplication.run(Main.class, args);
+       SpringApplication.run(XMockApplication.class, args);
 
     }
 }

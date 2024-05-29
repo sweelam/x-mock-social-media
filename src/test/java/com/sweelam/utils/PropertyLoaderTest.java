@@ -9,7 +9,7 @@ public class PropertyLoaderTest {
     @Test
     void testLoad() {
         var property = new PropertyLoader();
-        String string = property.load("mongodb.url");
+        String string = property.load("spring.data.mongodb.uri");
         assertNotNull(string);
         assertTrue(string.length() != 0);
     }
