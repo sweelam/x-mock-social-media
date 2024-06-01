@@ -22,6 +22,7 @@
         <mongodb-driver-sync.version>4.11.1</mongodb-driver-sync.version>
         <mongodb-crypt.version>1.8.0</mongodb-crypt.version>
         <reactor.version>3.6.0</reactor.version>
+        <springdoc.version>2.5.0</springdoc.version>
     </properties>
 
     <dependencies>
@@ -68,6 +69,13 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springdoc.version}</version>
+         </dependency>
+      
     </dependencies>
 
     <build>

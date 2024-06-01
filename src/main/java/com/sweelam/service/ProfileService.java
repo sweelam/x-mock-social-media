@@ -15,4 +15,6 @@ public interface ProfileService {
     Document getById(String profileId);
 
     void save(List<Map<String, Object>> entity);
+
+    Flux<Profile> saveProfiles(final List<Profile> profiles);
 }

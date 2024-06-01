@@ -2,8 +2,12 @@ package com.sweelam.rest;
 
 import com.sweelam.model.Profile;
 import com.sweelam.service.ProfileService;
+
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -15,11 +19,14 @@ import java.util.Map;
 @RequestMapping("api/profiles")
 @RequiredArgsConstructor
 @Slf4j
-//@CrossOrigin
 public class ProfileController {
     private final ProfileService profileService;
 
-    @GetMapping
+    @Operation(
+        description = "Fetch all profiles from the system, this API should provide available database profiles",
+        summary = "All System Profiles"
+    )
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<Profile> getProfiles() {
         log.info("Current thread {}", Thread.currentThread().getId());
         return profileService.getAllProfilesReactively()
@@ -31,10 +38,15 @@ public class ProfileController {
         return ResponseEntity.ok(profileService.getById(profileId));
     }
 
-    @PostMapping
+    @PostMapping("/v1")
     public ResponseEntity<?> addNewProfile(@RequestBody List<Map<String, Object>> entity) {
         profileService.save(entity);
         return ResponseEntity.ok("Done");
+    }
+
+    @PostMapping("/v2")
+    public Flux<Profile> saveProfile(@RequestBody List<Profile> profiles) {
+        return profileService.saveProfiles(profiles);
     }
 
 }
